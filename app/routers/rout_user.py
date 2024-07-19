@@ -21,7 +21,7 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
     return new_user
 
 
-# @router.get("/{id}", response_model=UserOut)
-# def get_user(id: int, db: Session = Depends(get_db)):
-
-#     return user
+@router.get("/{id}", response_model=UserOut)
+def get_user(id: int, db: Session = Depends(get_db)):
+    user: models.User = db.query(models.User).filter(models.User.id == id).first()
+    return user
