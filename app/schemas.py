@@ -21,10 +21,8 @@ class UserOut(UserBase):
 
 
 class AppointmentBase(BaseModel):
-    title: str  # Client's name
-    author: str  # Person who made an Appointment
-    was_held: bool
-    date_and_time: datetime
+    client_id: int
+    user_id: int
 
 
 class AppointmentCreate(AppointmentBase):

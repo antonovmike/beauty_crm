@@ -44,3 +44,17 @@ class Manager(User):
 
     personal_id = Column(Integer)
     is_senior = Column(Boolean)
+
+
+class Appointment(Base):
+    """Represents an appointment in the system."""
+
+    __tablename__ = "appointments"
+
+    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+
+    id = Column(Integer, primary_key=True, nullable=False)
+    client_id = Column(Integer, nullable=False)
+    created_at = Column(
+        TIMESTAMP(timezone=True), server_default=text("now()"), nullable=False
+    )
