@@ -6,6 +6,7 @@ from pydantic import BaseModel
 from . import models
 from .database import engine
 from .routers import rout_appointment, rout_user
+from util.templates import get_templates
 
 
 models.Base.metadata.create_all(bind=engine)
@@ -14,10 +15,6 @@ app = FastAPI()
 
 app.include_router(rout_user.router)
 app.include_router(rout_appointment.router)
-
-
-def get_templates():
-    return Jinja2Templates(directory="templates")
 
 
 @app.get("/", response_class=HTMLResponse)
